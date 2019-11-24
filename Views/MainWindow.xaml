@@ -5,27 +5,210 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LazyManWPF.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LazyMan WPF"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+
     <Grid>
         <DockPanel VerticalAlignment="Top">
 
             <!-- Window Menu Bar -->
             <Menu DockPanel.Dock="Top" VerticalAlignment="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Name="FileMenuItemExit" Header="Exit"/>               <!-- InputGestureText="{Binding CloseWindowCommand.InputGestureText} Command="{Binding CloseWindowCommand}-->
+                    <MenuItem Name="FileMenuItemExit" Header="Exit"/>
+                    <!-- InputGestureText="{Binding CloseWindowCommand.InputGestureText} Command="{Binding CloseWindowCommand}-->
                 </MenuItem>
                 <MenuItem Header="_Edit">
-                    <MenuItem Name="EditMenuItemPref" Header="Preferences"/>        <!-- InputGestureText="{Binding OpenPreferencesCommand.InputGestureText} Command="{Binding OpenPreferencesCommand}-->
-                    <MenuItem Name="EditMenuItemCIP" Header="Change IP"/>           <!-- InputGestureText="{Binding ChangeIPCommand.InputGestureText} Command="{Binding ChangeIPCommand}-->
-                    <MenuItem Name="EditMenuItemCHF" Header="Clear Host Files"/>    <!-- InputGestureText="{Binding ClearHostsCommand.InputGestureText} Command="{Binding ClearHostsCommand}-->
+                    <MenuItem Name="EditMenuItemPref" Header="Preferences"/>
+                    <!-- InputGestureText="{Binding OpenPreferencesCommand.InputGestureText} Command="{Binding OpenPreferencesCommand}-->
+                    <MenuItem Name="EditMenuItemCIP" Header="Change IP"/>
+                    <!-- InputGestureText="{Binding ChangeIPCommand.InputGestureText} Command="{Binding ChangeIPCommand}-->
+                    <MenuItem Name="EditMenuItemCHF" Header="Clear Host Files"/>
+                    <!-- InputGestureText="{Binding ClearHostsCommand.InputGestureText} Command="{Binding ClearHostsCommand}-->
                 </MenuItem>
                 <MenuItem Header="_Help">
-                    <MenuItem Name="HelpMenuItemGuides" Header="Guides"/>           <!-- InputGestureText="{Binding GuidesCommand.InputGestureText} Command="{Binding GuidesCommand}-->
-                    <MenuItem Name="HelpMenuItemAbout" Header="About"/>             <!-- InputGestureText="{Binding AboutCommand.InputGestureText} Command="{Binding AboutCommand}-->
+                    <MenuItem Name="HelpMenuItemGuides" Header="Guides"/>
+                    <!-- InputGestureText="{Binding GuidesCommand.InputGestureText} Command="{Binding GuidesCommand}-->
+                    <MenuItem Name="HelpMenuItemAbout" Header="About"/>
+                    <!-- InputGestureText="{Binding AboutCommand.InputGestureText} Command="{Binding AboutCommand}-->
                 </MenuItem>
-                <Button x:Name="ButtonDonate" Content="Donate"/>                    <!-- InputGestureText="{Binding DonateCommand.InputGestureText} Command="{Binding DonateCommand}-->
+                <Button x:Name="ButtonDonate" Content="Donate"/>
+                <!-- InputGestureText="{Binding DonateCommand.InputGestureText} Command="{Binding DonateCommand}-->
             </Menu>
-            
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Tab Control -->
+                <TabControl Grid.Row="0" Grid.Column="0">
+                    <TabItem Header="NHL">
+                        <!-- NHL Tab -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Date Label -->
+                                <Label Content="Date:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                                <!-- Date Picker -->
+                                <DatePicker x:Name="NHLDatePicker" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                            </Grid>
+
+                            <!-- Previous Day Button -->
+                            <Button Content="&lt;" Width="20" Grid.Row="0" Grid.Column="3" Margin="5"/>
+                            <!-- Next Day Button -->
+                            <Button Content="&gt;" Width="20" Grid.Row="0" Grid.Column="4" Margin="5"/>
+                            <!-- Refresh Button -->
+                            <Button Content="Refresh" Width="100" Grid.Row="0" Grid.Column="5" Margin="5"/>
+                            <!-- Game List View-->
+                            <ListView Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="350" Width="648"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Away" DisplayMemberBinding="{Binding AwayTeam}" Width="250">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Height="100" Width="250">
+                                                        <Image Source="{Binding XPath=@Image}"/>
+                                                        <TextBlock Text="{Binding XPath=@TeamName}" HorizontalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn Header="Home" Width="250">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Height="100" Width="250">
+                                                        <Image Source="{Binding XPath=@Image}"/>
+                                                        <TextBlock Text="{Binding XPath=@TeamName}" HorizontalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn Header="Time" Width="148"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="MLB">
+                        <!-- MLB Tab -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Date Label -->
+                                <Label Content="Date:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                                <!-- Date Picker -->
+                                <DatePicker x:Name="MLBDatePicker" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                            </Grid>
+
+                            <!-- Previous Day Button -->
+                            <Button Content="&lt;" Width="20" Grid.Row="0" Grid.Column="3" Margin="5"/>
+                            <!-- Next Day Button -->
+                            <Button Content="&gt;" Width="20" Grid.Row="0" Grid.Column="4" Margin="5"/>
+                            <!-- Refresh Button -->
+                            <Button Content="Refresh" Width="100" Grid.Row="0" Grid.Column="5" Margin="5"/>
+                            <!-- Game List View-->
+                            <ListView Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="350" Width="648"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Log">
+                        <TextBlock Text="{Binding LogText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True"
+                                   Height="386" Width="648" Margin="5" Background="Black" Foreground="White"/>
+                    </TabItem>
+                </TabControl>
+
+                <Grid Grid.Row="1" Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Progress Bar -->
+                    <ProgressBar Grid.Row="1" Grid.Column="0" Margin="10" Height="15" Width="100"/>
+
+                    <!-- Feed Choice -->
+                    <ComboBox ItemsSource="{Binding FeedList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedFeedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="0,10,0,10"/>
+
+                    <!-- Quality Choice -->
+                    <ComboBox ItemsSource="{Binding QualityList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedQualityItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="2" Margin="0,10,0,10"/>
+
+                    <!-- CDN Choice -->
+                    <ComboBox ItemsSource="{Binding CDNList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCDNItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3" Margin="0,10,0,10"/>
+
+
+                    <!-- Play Button -->
+                    <Button Content="Play" Command="{Binding PlayCommand}" Grid.Row="1" Grid.Column="4" Height="50" Width="100" Margin="10,10,5,10"/>
+
+                    <Grid Grid.Row="1" Grid.Column="5" Margin="5,10,10,10">
+                        <Grid Grid.Row="1" Grid.Column="5" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Save Stream Check Box -->
+                            <CheckBox Content="Save Stream" IsChecked="{Binding SaveStreamCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Margin="2.5"/>
+
+                            <!-- Restart Check Box -->
+                            <CheckBox Content="Restart" IsChecked="{Binding RestartCheck, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="2.5"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+
         </DockPanel>
     </Grid>
 </Window>
