@@ -1,12 +1,31 @@
-﻿<Window x:Class="LazyManWPF.MainWindow"
+﻿<Window x:Class="LazyManWPF.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LazyManWPF"
+        xmlns:local="clr-namespace:LazyManWPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <DockPanel VerticalAlignment="Top">
+
+            <!-- Window Menu Bar -->
+            <Menu DockPanel.Dock="Top" VerticalAlignment="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Name="FileMenuItemExit" Header="Exit"/>               <!-- InputGestureText="{Binding CloseWindowCommand.InputGestureText} Command="{Binding CloseWindowCommand}-->
+                </MenuItem>
+                <MenuItem Header="_Edit">
+                    <MenuItem Name="EditMenuItemPref" Header="Preferences"/>        <!-- InputGestureText="{Binding OpenPreferencesCommand.InputGestureText} Command="{Binding OpenPreferencesCommand}-->
+                    <MenuItem Name="EditMenuItemCIP" Header="Change IP"/>           <!-- InputGestureText="{Binding ChangeIPCommand.InputGestureText} Command="{Binding ChangeIPCommand}-->
+                    <MenuItem Name="EditMenuItemCHF" Header="Clear Host Files"/>    <!-- InputGestureText="{Binding ClearHostsCommand.InputGestureText} Command="{Binding ClearHostsCommand}-->
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Name="HelpMenuItemGuides" Header="Guides"/>           <!-- InputGestureText="{Binding GuidesCommand.InputGestureText} Command="{Binding GuidesCommand}-->
+                    <MenuItem Name="HelpMenuItemAbout" Header="About"/>             <!-- InputGestureText="{Binding AboutCommand.InputGestureText} Command="{Binding AboutCommand}-->
+                </MenuItem>
+                <Button x:Name="ButtonDonate" Content="Donate"/>                    <!-- InputGestureText="{Binding DonateCommand.InputGestureText} Command="{Binding DonateCommand}-->
+            </Menu>
+            
+        </DockPanel>
     </Grid>
 </Window>
