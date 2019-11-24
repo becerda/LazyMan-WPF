@@ -83,7 +83,7 @@
                             <!-- Refresh Button -->
                             <Button Content="Refresh" Width="100" Grid.Row="0" Grid.Column="5" Margin="5"/>
                             <!-- Game List View-->
-                            <ListView Margin="5,5,0,5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="350" Width="648"
+                            <ListView Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="350" Width="648"
                                       ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
                                 <ListView.View>
                                     <GridView>
@@ -141,7 +141,7 @@
                                 <!-- Date Label -->
                                 <Label Content="Date:" Grid.Row="0" Grid.Column="0" Margin="5"/>
                                 <!-- Date Picker -->
-                                <DatePicker Grid.Row="0" Grid.Column="1" Margin="5"/>
+                                <DatePicker x:Name="MLBDatePicker" Grid.Row="0" Grid.Column="1" Margin="5"/>
                             </Grid>
 
                             <!-- Previous Day Button -->
@@ -151,12 +151,15 @@
                             <!-- Refresh Button -->
                             <Button Content="Refresh" Width="100" Grid.Row="0" Grid.Column="5" Margin="5"/>
                             <!-- Game List View-->
-                            <ListView Margin="5,5,0,5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="350" Width="648"
+                            <ListView Margin="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="350" Width="648"
                                       ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Log"/>
+                    <TabItem Header="Log">
+                        <TextBlock Text="{Binding LogText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.CanContentScroll="True"
+                                   Height="386" Width="648" Margin="5" Background="Black" Foreground="White"/>
+                    </TabItem>
                 </TabControl>
 
                 <Grid Grid.Row="1" Margin="10,0,10,0">

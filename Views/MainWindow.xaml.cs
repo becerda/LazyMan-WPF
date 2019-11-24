@@ -12,6 +12,8 @@ namespace LazyManWPF.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow() : this(null) { }
+
         public MainWindow(object dataContext)
         {
             InitializeComponent();
@@ -21,6 +23,8 @@ namespace LazyManWPF.Views
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            NHLDatePicker.SelectedDate = DateTime.Now;
+            MLBDatePicker.SelectedDate = DateTime.Now;
             /*if(DataContext is IClosable)
             {
                 (DataContext as IClosable).RequestClose += (_, __,) => this.Close();
