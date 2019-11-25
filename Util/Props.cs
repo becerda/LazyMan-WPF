@@ -96,7 +96,7 @@ namespace LazyManWPF.Util
                 Properties.Settings.Default.Save();
             }
         }
-
+        
         public static string CDN
         {
             get

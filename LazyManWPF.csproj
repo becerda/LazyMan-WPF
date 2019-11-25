@@ -70,6 +70,8 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameStream.cs" />
     <Compile Include="Models\GameWatchInfo.cs" />
+    <Compile Include="Objects\Web.cs" />
+    <Compile Include="Util\Encryption.cs" />
     <Compile Include="Util\Props.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
